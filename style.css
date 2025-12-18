@@ -958,8 +958,16 @@ h1 {
         color: #ffffff;
     }
     
-    .glitch-bar, .thick-line, .bold-text, .glitch-text {
+    .glitch-bar, .thick-line {
         background-color: #ffffff;
+    }
+    
+    .bold-text {
+        color: #ffffff;
+        opacity: 0.12;
+    }
+    
+    .glitch-text {
         color: #ffffff;
     }
     
