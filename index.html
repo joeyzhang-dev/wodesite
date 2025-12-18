@@ -134,6 +134,11 @@
             <span style="animation-delay: 0s">c</span><span style="animation-delay: 0.1s">l</span><span style="animation-delay: 0.2s">i</span><span style="animation-delay: 0.3s">c</span><span style="animation-delay: 0.4s">k</span><span style="animation-delay: 0.5s"> </span><span style="animation-delay: 0.6s"> </span><span style="animation-delay: 0.7s"> </span><span style="animation-delay: 0.8s">m</span><span style="animation-delay: 0.9s">e</span><span style="animation-delay: 1s"> </span><span style="animation-delay: 1.1s">🔥</span>
         </span>
     </div>
+    
+    <a href="https://open.spotify.com/track/244o1WJ8wPcYY8D206B0pp?si=5186777ad7354f72" target="_blank" class="song-link" id="songLink">
+        <span class="song-title">没关系</span>
+        <span class="song-artist">M!$ter K</span>
+    </a>
     <audio id="audioPlayer" loop autoplay>
         <source src="banger.mp3" type="audio/mpeg">
     </audio>
@@ -243,7 +248,7 @@
                 
                 setTimeout(() => {
                     yahooo.classList.add('slide');
-                }, 10);
+                }, 1);
                 
                 setTimeout(() => {
                     yahooo.style.display = 'none';
@@ -259,18 +264,20 @@
                         document.body.classList.remove('shake');
                         document.body.classList.remove('invert');
                     }, 200);
-                }, 1000);
+                }, 750);
                 
                 hasPlayedBefore = true;
             }
         }
         
         const audioLabel = document.querySelector('.audio-label');
+        const songLink = document.getElementById('songLink');
         
         audioPlayer.play().then(() => {
             isPlaying = true;
             playBtn.textContent = '❚❚';
             audioLabel.style.visibility = 'hidden';
+            songLink.classList.add('show');
             triggerYahooo();
         }).catch(() => {
             console.log('Autoplay blocked');
@@ -285,6 +292,7 @@
                 audioPlayer.play();
                 playBtn.textContent = '❚❚';
                 audioLabel.style.visibility = 'hidden';
+                songLink.classList.add('show');
                 triggerYahooo();
             }
             isPlaying = !isPlaying;

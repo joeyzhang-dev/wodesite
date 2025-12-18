@@ -914,6 +914,15 @@ h1 {
     .yahooo {
         font-size: 80px;
     }
+    
+    .song-link {
+        font-size: 9px;
+        transform: translate(-50%, -50%) translateX(-45px);
+    }
+    
+    .song-artist {
+        font-size: 8px;
+    }
 }
 
 .audio-player {
@@ -967,6 +976,46 @@ h1 {
     50% {
         transform: translateX(4px);
     }
+}
+
+.song-link {
+    position: fixed;
+    top: 50%;
+    left: 33%;
+    transform: translate(-50%, -50%) translateX(-60px);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: right;
+}
+
+.song-link.show {
+    opacity: 0.4;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.song-link:hover {
+    opacity: 0.7;
+}
+
+.song-title {
+    color: #0a0a0a;
+    font-weight: 500;
+}
+
+.song-artist {
+    color: #0a0a0a;
+    opacity: 0.6;
+    font-size: 9px;
 }
 
 .yahooo {
@@ -1273,6 +1322,17 @@ body.shake .trail-8 {
     
     body.invert .trail {
         color: #0a0a0a !important;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .song-title, .song-artist {
+        color: #ffffff;
+    }
+    
+    body.invert .song-title,
+    body.invert .song-artist {
+        color: #0a0a0a;
     }
 }
 
