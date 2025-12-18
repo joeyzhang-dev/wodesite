@@ -912,3 +912,77 @@ h1 {
     }
 }
 
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0a0a0a;
+        color: #ffffff;
+    }
+    
+    h1, .trail {
+        color: #ffffff;
+    }
+    
+    .scatter-text, .coordinate, .random-text, .version-number {
+        color: #ffffff;
+    }
+    
+    .books-title, .goals-title, .stats-title {
+        color: #ffffff;
+    }
+    
+    .book-item, .goal-item, .stat-item {
+        color: #ffffff;
+    }
+    
+    .blog-date {
+        color: #ffffff;
+    }
+    
+    .blog-content {
+        color: #ffffff;
+    }
+    
+    .social-links a {
+        color: #ffffff;
+    }
+    
+    .scroll-text, .scroll-caret {
+        color: #ffffff;
+    }
+    
+    .corner-bracket {
+        color: #ffffff;
+    }
+    
+    .status-text {
+        color: #ffffff;
+    }
+    
+    .glitch-bar, .thick-line, .bold-text, .glitch-text {
+        background-color: #ffffff;
+        color: #ffffff;
+    }
+    
+    .bold-box {
+        border-color: #ffffff;
+    }
+    
+    .heavy-border {
+        border-color: #ffffff;
+    }
+    
+    .bold-arrow {
+        color: #ffffff;
+    }
+    
+    .scan-line {
+        background: linear-gradient(to bottom, transparent, #ffffff, transparent);
+    }
+    
+    .grid-lines {
+        background-image: 
+            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+}
+
