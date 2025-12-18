@@ -127,6 +127,19 @@
             <p class="blog-content">built another iron golem farm in my smp. now we printing iron ingots.</p>
         </div>
     </section>
+    
+    <div class="audio-player">
+        <button class="play-btn" id="playBtn">▶</button>
+        <span class="audio-label">play music</span>
+    </div>
+    <audio id="audioPlayer" loop autoplay>
+        <source src="banger.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div class="yahooo" id="yahooo">
+        <span style="animation-delay: 0.5s">y</span><span style="animation-delay: 0.4s">a</span><span style="animation-delay: 0.3s">h</span><span style="animation-delay: 0.2s">o</span><span style="animation-delay: 0.1s">o</span><span style="animation-delay: 0s">o</span>
+    </div>
+    
     <script>
         const nameContainer = document.querySelector('.name-container');
         const trails = document.querySelectorAll('.trail');
@@ -212,6 +225,44 @@
             } else {
                 scrollIndicator.style.opacity = '0.5';
             }
+        });
+        
+        // Audio player
+        const playBtn = document.getElementById('playBtn');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const yahooo = document.getElementById('yahooo');
+        let isPlaying = false;
+        let hasPlayedBefore = false;
+        
+        function triggerYahooo() {
+            if (!hasPlayedBefore) {
+                yahooo.classList.add('slide');
+                setTimeout(() => {
+                    yahooo.classList.remove('slide');
+                }, 1500);
+                hasPlayedBefore = true;
+            }
+        }
+        
+        audioPlayer.play().then(() => {
+            isPlaying = true;
+            playBtn.textContent = '❚❚';
+            triggerYahooo();
+        }).catch(() => {
+            console.log('Autoplay blocked');
+            playBtn.textContent = '▶';
+        });
+        
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audioPlayer.pause();
+                playBtn.textContent = '▶';
+            } else {
+                audioPlayer.play();
+                playBtn.textContent = '❚❚';
+                triggerYahooo();
+            }
+            isPlaying = !isPlaying;
         });
     </script>
 </body>

@@ -912,6 +912,95 @@ h1 {
     }
 }
 
+.audio-player {
+    position: fixed;
+    top: 50%;
+    left: 3%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    pointer-events: auto;
+}
+
+.play-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #0a0a0a;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #0a0a0a;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.audio-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    opacity: 0.5;
+    text-transform: lowercase;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.05em;
+}
+
+.yahooo {
+    position: fixed;
+    top: 50%;
+    left: -100%;
+    transform: translateY(-50%);
+    font-size: 200px;
+    font-weight: 900;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #0a0a0a;
+    opacity: 0.2;
+    z-index: 200;
+    pointer-events: none;
+    text-transform: lowercase;
+    white-space: nowrap;
+}
+
+.yahooo span {
+    display: inline-block;
+}
+
+.yahooo.slide span {
+    animation: letterBounce 0.4s ease-in-out;
+}
+
+.yahooo.slide {
+    animation: slideAcross 1.25s ease-in-out;
+}
+
+@keyframes slideAcross {
+    0% {
+        left: -50%;
+    }
+    50% {
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+@keyframes letterBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(2);
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #0a0a0a;
@@ -991,6 +1080,19 @@ h1 {
         background-image: 
             linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
             linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+    
+    .play-btn {
+        border-color: #ffffff;
+        color: #ffffff;
+    }
+    
+    .audio-label {
+        color: #ffffff;
+    }
+    
+    .yahooo {
+        color: #ffffff;
     }
 }
 
