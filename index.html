@@ -22,6 +22,7 @@
         <img src="reiascii.png" alt="" class="ascii-img">
         <img src="jinro.png" alt="" class="jinro-img">
         <img src="MC.png" alt="" class="mc-img">
+        <img src="me.gif" alt="" class="me-img">
         <div class="books-section">
             <div class="books-title">books</div>
             <div class="book-item">linear alegbra done right, axler</div>
@@ -48,6 +49,48 @@
         <div class="coordinate coord-2">(87, 23)</div>
         <div class="coordinate coord-3">(34, 78)</div>
         <div class="coordinate coord-4">(65, 91)</div>
+        
+        <!-- Brutal elements -->
+        <div class="glitch-bar bar-1"></div>
+        <div class="glitch-bar bar-2"></div>
+        <div class="glitch-bar bar-3"></div>
+        
+        <div class="corner-bracket top-left">┌</div>
+        <div class="corner-bracket top-right">┐</div>
+        <div class="corner-bracket bottom-left">└</div>
+        <div class="corner-bracket bottom-right">┘</div>
+        
+        <div class="status-indicator">
+            <span class="status-dot"></span>
+            <span class="status-text">online</span>
+        </div>
+        
+        <div class="grid-lines"></div>
+        
+        <div class="random-text rt-1">↗</div>
+        <div class="random-text rt-2">*</div>
+        <div class="random-text rt-3">→</div>
+        <div class="random-text rt-4">+</div>
+        <div class="random-text rt-5">×</div>
+        
+        <!-- Crazy bold elements -->
+        <div class="bold-text bt-1">kappa</div>
+        <div class="bold-text bt-2">68±1</div>
+        
+        <div class="thick-line tl-1"></div>
+        <div class="thick-line tl-2"></div>
+        
+        <div class="bold-box bb-1"></div>
+        <div class="bold-box bb-2"></div>
+        <div class="bold-box bb-3"></div>
+        
+        <div class="glitch-text">poggers</div>
+        
+        <div class="heavy-border"></div>
+        
+        <div class="bold-arrow">►</div>
+        
+        <div class="scan-line"></div>
     </div>
     <main>
         <div class="name-container">
@@ -66,15 +109,53 @@
         const trails = document.querySelectorAll('.trail');
         let timeout;
         
+        // Store positions for each layer
+        let positions = [
+            { x: -5, y: -5, rot: 0 },
+            { x: -10, y: -10, rot: 0 },
+            { x: -15, y: -15, rot: 0 },
+            { x: -20, y: -20, rot: 0 },
+            { x: -25, y: -25, rot: 0 },
+            { x: -30, y: -30, rot: 0 },
+            { x: -35, y: -35, rot: 0 },
+            { x: -40, y: -40, rot: 0 }
+        ];
+        
         function resetTrails() {
-            trails[0].style.transform = `translate(-4px, -4px) rotate(0deg)`;
-            trails[1].style.transform = `translate(-8px, -8px) rotate(0deg)`;
-            trails[2].style.transform = `translate(-12px, -12px) rotate(0deg)`;
-            trails[3].style.transform = `translate(-16px, -16px) rotate(0deg)`;
-            trails[4].style.transform = `translate(-20px, -20px) rotate(0deg)`;
-            trails[5].style.transform = `translate(-24px, -24px) rotate(0deg)`;
-            trails[6].style.transform = `translate(-28px, -28px) rotate(0deg)`;
-            trails[7].style.transform = `translate(-32px, -32px) rotate(0deg)`;
+            positions = [
+                { x: -5, y: -5, rot: 0 },
+                { x: -10, y: -10, rot: 0 },
+                { x: -15, y: -15, rot: 0 },
+                { x: -20, y: -20, rot: 0 },
+                { x: -25, y: -25, rot: 0 },
+                { x: -30, y: -30, rot: 0 },
+                { x: -35, y: -35, rot: 0 },
+                { x: -40, y: -40, rot: 0 }
+            ];
+            updateTrailPositions();
+        }
+        
+        function updateTrailPositions() {
+            trails.forEach((trail, index) => {
+                trail.style.transform = `translate(${positions[index].x}px, ${positions[index].y}px) rotate(${positions[index].rot}deg)`;
+            });
+        }
+        
+        function animateTrails() {
+            // Each layer follows its parent with interpolation
+            for (let i = trails.length - 1; i > 0; i--) {
+                const parent = positions[i - 1];
+                const current = positions[i];
+                const offset = (i + 1) * 5;
+                
+                // Interpolate towards parent position with offset
+                current.x += (parent.x - offset - current.x) * 0.15;
+                current.y += (parent.y - offset - current.y) * 0.15;
+                current.rot += (parent.rot - current.rot) * 0.12;
+            }
+            
+            updateTrailPositions();
+            requestAnimationFrame(animateTrails);
         }
         
         document.addEventListener('mousemove', (e) => {
@@ -86,19 +167,18 @@
             const centerX = (x - 0.5) * 2;
             const centerY = (y - 0.5) * 2;
             
-            trails[0].style.transform = `translate(${-4 + centerX * 10}px, ${-4 + centerY * 12}px) rotate(${centerX * 0.5}deg)`;
-            trails[1].style.transform = `translate(${-8 + centerX * 20}px, ${-8 + centerY * 24}px) rotate(${centerX * 0.8}deg)`;
-            trails[2].style.transform = `translate(${-12 + centerX * 30}px, ${-12 + centerY * 36}px) rotate(${centerX * 1}deg)`;
-            trails[3].style.transform = `translate(${-16 + centerX * 40}px, ${-16 + centerY * 48}px) rotate(${centerX * 1.2}deg)`;
-            trails[4].style.transform = `translate(${-20 + centerX * 50}px, ${-20 + centerY * 60}px) rotate(${centerX * 1.4}deg)`;
-            trails[5].style.transform = `translate(${-24 + centerX * 60}px, ${-24 + centerY * 72}px) rotate(${centerX * 1.6}deg)`;
-            trails[6].style.transform = `translate(${-28 + centerX * 70}px, ${-28 + centerY * 84}px) rotate(${centerX * 1.8}deg)`;
-            trails[7].style.transform = `translate(${-32 + centerX * 80}px, ${-32 + centerY * 96}px) rotate(${centerX * 2}deg)`;
+            // Only update the first trail directly from cursor
+            positions[0].x = -5 + centerX * 10;
+            positions[0].y = -5 + centerY * 12;
+            positions[0].rot = centerX * 2;
             
             timeout = setTimeout(resetTrails, 500);
         });
         
         document.addEventListener('mouseleave', resetTrails);
+        
+        // Start animation loop
+        animateTrails();
     </script>
 </body>
 </html>
