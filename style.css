@@ -1025,6 +1025,51 @@ body.shake {
     animation: shake 0.25s ease-in-out;
 }
 
+body.invert {
+    background: #0a0a0a;
+    color: #ffffff;
+}
+
+body.invert .name-container,
+body.invert .scatter-text,
+body.invert .books-title,
+body.invert .book-item,
+body.invert .goals-title,
+body.invert .goal-item,
+body.invert .stats-title,
+body.invert .stat-item,
+body.invert .version-number,
+body.invert .quote,
+body.invert .coordinate,
+body.invert .corner-bracket,
+body.invert .status-indicator,
+body.invert .blog-date,
+body.invert .blog-content,
+body.invert .scroll-text,
+body.invert .scroll-caret,
+body.invert .audio-label {
+    color: #ffffff;
+}
+
+body.invert .social-links a {
+    color: #ffffff;
+}
+
+body.invert .play-btn {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+body.invert .bold-text,
+body.invert .glitch-text,
+body.invert .yahooo {
+    color: #ffffff;
+}
+
+body.invert .trail {
+    color: #ffffff !important;
+}
+
 body.shake .trail-1 {
     transform: translate(45px, -50px) rotate(-15deg) !important;
 }
@@ -1185,5 +1230,49 @@ body.shake .trail-8 {
         color: #ffffff;
     }
     
+    body.invert {
+        background: #ffffff;
+        color: #0a0a0a;
+    }
+    
+    body.invert .name-container,
+    body.invert .scatter-text,
+    body.invert .books-title,
+    body.invert .book-item,
+    body.invert .goals-title,
+    body.invert .goal-item,
+    body.invert .stats-title,
+    body.invert .stat-item,
+    body.invert .version-number,
+    body.invert .quote,
+    body.invert .coordinate,
+    body.invert .corner-bracket,
+    body.invert .status-indicator,
+    body.invert .blog-date,
+    body.invert .blog-content,
+    body.invert .scroll-text,
+    body.invert .scroll-caret,
+    body.invert .audio-label {
+        color: #0a0a0a;
+    }
+    
+    body.invert .social-links a {
+        color: #0a0a0a;
+    }
+    
+    body.invert .play-btn {
+        border-color: #0a0a0a;
+        color: #0a0a0a;
+    }
+    
+    body.invert .bold-text,
+    body.invert .glitch-text,
+    body.invert .yahooo {
+        color: #0a0a0a;
+    }
+    
+    body.invert .trail {
+        color: #0a0a0a !important;
+    }
 }
 

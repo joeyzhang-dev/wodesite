@@ -254,8 +254,10 @@
                 // Trigger shake at beat drop
                 setTimeout(() => {
                     document.body.classList.add('shake');
+                    document.body.classList.add('invert');
                     setTimeout(() => {
                         document.body.classList.remove('shake');
+                        document.body.classList.remove('invert');
                     }, 200);
                 }, 1000);
                 
