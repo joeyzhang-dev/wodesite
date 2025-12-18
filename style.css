@@ -276,7 +276,6 @@ body {
     right: 30%;
 }
 
-/* Brutal elements */
 .glitch-bar {
     position: absolute;
     height: 2px;
@@ -409,7 +408,6 @@ body {
     left: 60%;
 }
 
-/* Crazy bold elements */
 .bold-text {
     position: absolute;
     font-family: 'Space Grotesk', sans-serif;
@@ -539,7 +537,7 @@ body {
     right: 5%;
     width: 400px;
     height: auto;
-    opacity: 0.6;
+    opacity: 0.75;
 }
 
 .jinro-img {
@@ -679,11 +677,38 @@ h1 {
     .scatter-4 { font-size: 13px; }
     .scatter-5 { font-size: 13px; }
     .scatter-6 { font-size: 16px; }
+    
+    .books-section {
+        left: 5%;
+        max-width: 90%;
+    }
+    
+    .goals-section {
+        top: auto;
+        bottom: 45%;
+        left: 5%;
+        max-width: 90%;
+    }
+    
+    .stats-section {
+        top: auto;
+        bottom: 25%;
+        left: 5%;
+        max-width: 90%;
+    }
+    
+    .books-title, .goals-title, .stats-title {
+        font-size: 12px;
+    }
+    
+    .book-item, .goal-item, .stat-item {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 36px;
+        font-size: 32px;
     }
     
     .scatter-text {
@@ -696,5 +721,48 @@ h1 {
     .scatter-4 { font-size: 11px; right: 5%; }
     .scatter-5 { font-size: 10px; right: 5%; }
     .scatter-6 { font-size: 14px; left: 5%; }
+    
+    .books-section {
+        top: auto;
+        bottom: 55%;
+        left: 5%;
+        right: 5%;
+        max-width: none;
+    }
+    
+    .goals-section {
+        top: auto;
+        bottom: 35%;
+        left: 5%;
+        right: 5%;
+        max-width: none;
+    }
+    
+    .stats-section {
+        top: auto;
+        bottom: 15%;
+        left: 5%;
+        right: 5%;
+        max-width: none;
+    }
+    
+    .books-title, .goals-title, .stats-title {
+        font-size: 11px;
+        margin-bottom: 6px;
+    }
+    
+    .book-item, .goal-item, .stat-item {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .bold-text, .thick-line, .bold-box, .glitch-text, .heavy-border {
+        display: none;
+    }
+    
+    .scatter-gif, .jinro-img, .mc-img, .ascii-img, .me-img {
+        opacity: 0.3;
+        width: 150px !important;
+    }
 }
 
