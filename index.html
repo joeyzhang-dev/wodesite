@@ -285,6 +285,7 @@
         });
         
         playBtn.addEventListener('click', () => {
+            playBtn.classList.add('no-glow');
             if (isPlaying) {
                 audioPlayer.pause();
                 playBtn.textContent = '▶';

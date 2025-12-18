@@ -952,6 +952,14 @@ h1 {
     align-items: center;
     justify-content: center;
     line-height: 1;
+    box-shadow: 0 0 20px rgba(10, 10, 10, 0.6),
+                0 0 40px rgba(10, 10, 10, 0.4),
+                0 0 60px rgba(10, 10, 10, 0.2);
+    transition: box-shadow 0.3s ease;
+}
+
+.play-btn.no-glow {
+    box-shadow: none !important;
 }
 
 .audio-label {
@@ -1107,6 +1115,9 @@ body.invert .social-links a {
 body.invert .play-btn {
     border-color: #ffffff;
     color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+                0 0 40px rgba(255, 255, 255, 0.4),
+                0 0 60px rgba(255, 255, 255, 0.2);
 }
 
 body.invert .bold-text,
@@ -1269,6 +1280,9 @@ body.shake .trail-8 {
     .play-btn {
         border-color: #ffffff;
         color: #ffffff;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+                    0 0 40px rgba(255, 255, 255, 0.4),
+                    0 0 60px rgba(255, 255, 255, 0.2);
     }
     
     .audio-label {
@@ -1312,6 +1326,9 @@ body.shake .trail-8 {
     body.invert .play-btn {
         border-color: #0a0a0a;
         color: #0a0a0a;
+        box-shadow: 0 0 20px rgba(10, 10, 10, 0.6),
+                    0 0 40px rgba(10, 10, 10, 0.4),
+                    0 0 60px rgba(10, 10, 10, 0.2);
     }
     
     body.invert .bold-text,
