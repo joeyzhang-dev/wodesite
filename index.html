@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>joey</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&family=Work+Sans:wght@300;400;600&family=Rubik+Glitch&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="text-scatter">
+        <span class="scatter-text scatter-1">wsg i really like math</span>
+        <span class="scatter-text scatter-2">u r lazy</span>
+        <span class="scatter-text scatter-3">house music is trash</span>
+        <span class="scatter-text scatter-4">welcome to my humble abode</span>
+        <span class="scatter-text scatter-5">calorie deficit + 10k steps</span>
+        <span class="scatter-text scatter-6">195 wpm monkeytype</span>
+        <img src="teeth.gif" alt="" class="scatter-gif">
+        <span class="scatter-text scatter-7">lfg</span>
+        <img src="reiascii.png" alt="" class="ascii-img">
+        <img src="jinro.png" alt="" class="jinro-img">
+        <img src="MC.png" alt="" class="mc-img">
+        <div class="books-section">
+            <div class="books-title">books</div>
+            <div class="book-item">linear alegbra done right, axler</div>
+            <div class="book-item">option volatility & pricing, natenberg</div>
+            <div class="book-item">missing</div>
+        </div>
+        <div class="goals-section">
+            <div class="goals-title">goals</div>
+            <div class="goal-item">learn as much math as possible</div>
+            <div class="goal-item">c++ demon</div>
+            <div class="goal-item">6 pack + v taper</div>
+            <div class="goal-item">afford nissan 370z nismo</div>
+        </div>
+        <div class="stats-section">
+            <div class="stats-title">stats</div>
+            <div class="stat-item">6'5 @ 215lbs</div>
+            <div class="stat-item">swe intern @ wells fargo</div>
+            <div class="stat-item">terrible at lc</div>
+        </div>
+        <div class="version-number">build 2025.12.17</div>
+        <div class="quote-mark quote-open">"</div>
+        <div class="quote-mark quote-close">"</div>
+        <div class="coordinate coord-1">(12, 45)</div>
+        <div class="coordinate coord-2">(87, 23)</div>
+        <div class="coordinate coord-3">(34, 78)</div>
+        <div class="coordinate coord-4">(65, 91)</div>
+    </div>
+    <main>
+        <div class="name-container">
+            <h1 class="trail trail-8">joey</h1>
+            <h1 class="trail trail-7">joey</h1>
+            <h1 class="trail trail-6">joey</h1>
+            <h1 class="trail trail-5">joey</h1>
+            <h1 class="trail trail-4">joey</h1>
+            <h1 class="trail trail-3">joey</h1>
+            <h1 class="trail trail-2">joey</h1>
+            <h1 class="trail trail-1">joey</h1>
+        </div>
+    </main>
+    <script>
+        const nameContainer = document.querySelector('.name-container');
+        const trails = document.querySelectorAll('.trail');
+        let timeout;
+        
+        function resetTrails() {
+            trails[0].style.transform = `translate(-4px, -4px) rotate(0deg)`;
+            trails[1].style.transform = `translate(-8px, -8px) rotate(0deg)`;
+            trails[2].style.transform = `translate(-12px, -12px) rotate(0deg)`;
+            trails[3].style.transform = `translate(-16px, -16px) rotate(0deg)`;
+            trails[4].style.transform = `translate(-20px, -20px) rotate(0deg)`;
+            trails[5].style.transform = `translate(-24px, -24px) rotate(0deg)`;
+            trails[6].style.transform = `translate(-28px, -28px) rotate(0deg)`;
+            trails[7].style.transform = `translate(-32px, -32px) rotate(0deg)`;
+        }
+        
+        document.addEventListener('mousemove', (e) => {
+            clearTimeout(timeout);
+            
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            const centerX = (x - 0.5) * 2;
+            const centerY = (y - 0.5) * 2;
+            
+            trails[0].style.transform = `translate(${-4 + centerX * 10}px, ${-4 + centerY * 12}px) rotate(${centerX * 0.5}deg)`;
+            trails[1].style.transform = `translate(${-8 + centerX * 20}px, ${-8 + centerY * 24}px) rotate(${centerX * 0.8}deg)`;
+            trails[2].style.transform = `translate(${-12 + centerX * 30}px, ${-12 + centerY * 36}px) rotate(${centerX * 1}deg)`;
+            trails[3].style.transform = `translate(${-16 + centerX * 40}px, ${-16 + centerY * 48}px) rotate(${centerX * 1.2}deg)`;
+            trails[4].style.transform = `translate(${-20 + centerX * 50}px, ${-20 + centerY * 60}px) rotate(${centerX * 1.4}deg)`;
+            trails[5].style.transform = `translate(${-24 + centerX * 60}px, ${-24 + centerY * 72}px) rotate(${centerX * 1.6}deg)`;
+            trails[6].style.transform = `translate(${-28 + centerX * 70}px, ${-28 + centerY * 84}px) rotate(${centerX * 1.8}deg)`;
+            trails[7].style.transform = `translate(${-32 + centerX * 80}px, ${-32 + centerY * 96}px) rotate(${centerX * 2}deg)`;
+            
+            timeout = setTimeout(resetTrails, 500);
+        });
+        
+        document.addEventListener('mouseleave', resetTrails);
+    </script>
+</body>
+</html>
+

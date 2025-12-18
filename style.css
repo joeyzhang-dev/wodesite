@@ -1,0 +1,443 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    color: #0a0a0a;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.text-scatter {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.scatter-text {
+    position: absolute;
+    text-transform: lowercase;
+    white-space: nowrap;
+    color: #0a0a0a;
+    opacity: 0.6;
+}
+
+.scatter-1 {
+    top: 22%;
+    left: 15%;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.scatter-2 {
+    top: 68%;
+    right: 18%;
+    font-size: 28px;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.scatter-3 {
+    bottom: 12%;
+    left: 8%;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.15em;
+}
+
+.scatter-4 {
+    top: 15%;
+    right: 12%;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Work Sans', sans-serif;
+    letter-spacing: 0.08em;
+}
+
+.scatter-5 {
+    bottom: 35%;
+    right: 8%;
+    font-size: 22px;
+    font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.02em;
+}
+
+.scatter-6 {
+    top: 38%;
+    left: 10%;
+    font-size: 22px;
+    font-weight: 400;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0.12em;
+}
+
+.scatter-gif {
+    position: absolute;
+    top: 25%;
+    right: 22%;
+    width: 350px;
+    height: auto;
+    opacity: 0.8;
+}
+
+.scatter-7 {
+    top: 33%;
+    right: 20%;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.books-section {
+    position: absolute;
+    top: 8%;
+    left: 8%;
+    max-width: 450px;
+    pointer-events: auto;
+}
+
+.books-title {
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    margin-bottom: 10px;
+    opacity: 0.85;
+}
+
+.book-item {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    text-transform: lowercase;
+    opacity: 0.75;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.book-item:hover {
+    opacity: 1;
+    letter-spacing: 0.05em;
+    transform: translateX(4px);
+}
+
+.goals-section {
+    position: absolute;
+    top: 8%;
+    left: 32%;
+    max-width: 400px;
+    pointer-events: auto;
+}
+
+.goals-title {
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    margin-bottom: 10px;
+    opacity: 0.85;
+}
+
+.goal-item {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    text-transform: lowercase;
+    opacity: 0.75;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.goal-item:hover {
+    opacity: 1;
+    letter-spacing: 0.05em;
+    transform: translateX(4px);
+}
+
+.stats-section {
+    position: absolute;
+    top: 8%;
+    left: 56%;
+    max-width: 400px;
+    pointer-events: auto;
+}
+
+.stats-title {
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    margin-bottom: 10px;
+    opacity: 0.85;
+}
+
+.stat-item {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    text-transform: lowercase;
+    opacity: 0.75;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.stat-item:hover {
+    opacity: 1;
+    letter-spacing: 0.05em;
+    transform: translateX(4px);
+}
+
+.version-number {
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+    font-size: 10px;
+    font-weight: 400;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+    opacity: 0.4;
+}
+
+.quote-mark {
+    position: absolute;
+    font-size: 180px;
+    font-weight: 300;
+    font-family: 'Inter', sans-serif;
+    opacity: 0.08;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.quote-open {
+    top: 5%;
+    right: 15%;
+}
+
+.quote-close {
+    bottom: 10%;
+    left: 20%;
+    transform: rotate(180deg);
+}
+
+.coordinate {
+    position: absolute;
+    font-size: 9px;
+    font-weight: 300;
+    font-family: 'IBM Plex Mono', monospace;
+    opacity: 0.25;
+    letter-spacing: 0.02em;
+}
+
+.coord-1 {
+    top: 18%;
+    left: 3%;
+}
+
+.coord-2 {
+    top: 62%;
+    right: 4%;
+}
+
+.coord-3 {
+    bottom: 28%;
+    left: 25%;
+}
+
+.coord-4 {
+    top: 85%;
+    right: 30%;
+}
+
+.ascii-img {
+    position: absolute;
+    bottom: 15%;
+    right: 5%;
+    width: 400px;
+    height: auto;
+    opacity: 0.6;
+}
+
+.jinro-img {
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    width: 350px;
+    height: 300px;
+    opacity: 0.7;
+}
+
+.mc-img {
+    position: absolute;
+    bottom: 8%;
+    left: 35%;
+    width: 400px;
+    height: auto;
+    opacity: 0.65;
+}
+
+main {
+    text-align: center;
+    z-index: 10;
+    position: relative;
+}
+
+.name-container {
+    position: relative;
+    display: inline-block;
+}
+
+h1 {
+    font-size: 96px;
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    text-transform: lowercase;
+    line-height: 1;
+    color: #0a0a0a;
+    font-family: 'Rubik Glitch', sans-serif;
+    margin: 0;
+}
+
+.trail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: blur(0px);
+}
+
+.trail-1 {
+    transform: translate(-4px, -4px);
+    opacity: 0.9;
+    filter: blur(0.5px);
+    z-index: 8;
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    animation: rgbCycle 2s linear infinite;
+}
+
+@keyframes rgbCycle {
+    0% { color: #ff6b6b; }
+    16.67% { color: #ffa06b; }
+    33.33% { color: #ffd96b; }
+    50% { color: #6bff6b; }
+    66.67% { color: #6bb5ff; }
+    83.33% { color: #b56bff; }
+    100% { color: #ff6b6b; }
+}
+
+.trail-2 {
+    transform: translate(-8px, -8px);
+    opacity: 0.65;
+    filter: blur(2px);
+    z-index: 7;
+    transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.trail-3 {
+    transform: translate(-12px, -12px);
+    opacity: 0.6;
+    filter: blur(3px);
+    z-index: 6;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.trail-4 {
+    transform: translate(-16px, -16px);
+    opacity: 0.5;
+    filter: blur(4px);
+    z-index: 5;
+    transition: transform 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.trail-5 {
+    transform: translate(-20px, -20px);
+    opacity: 0.4;
+    filter: blur(5px);
+    z-index: 4;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.trail-6 {
+    transform: translate(-24px, -24px);
+    opacity: 0.3;
+    filter: blur(6px);
+    z-index: 3;
+    transition: transform 0.55s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.trail-7 {
+    transform: translate(-28px, -28px);
+    opacity: 0.2;
+    filter: blur(7px);
+    z-index: 2;
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.trail-8 {
+    transform: translate(-32px, -32px);
+    opacity: 0.15;
+    filter: blur(8px);
+    z-index: 1;
+    transition: transform 0.65s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.trail:hover {
+    opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 48px;
+    }
+    
+    .scatter-1 { font-size: 11px; }
+    .scatter-2 { font-size: 20px; }
+    .scatter-3 { font-size: 9px; }
+    .scatter-4 { font-size: 13px; }
+    .scatter-5 { font-size: 13px; }
+    .scatter-6 { font-size: 16px; }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 36px;
+    }
+    
+    .scatter-text {
+        opacity: 0.5;
+    }
+    
+    .scatter-1 { font-size: 10px; left: 5%; }
+    .scatter-2 { font-size: 16px; right: 5%; }
+    .scatter-3 { font-size: 8px; left: 5%; }
+    .scatter-4 { font-size: 11px; right: 5%; }
+    .scatter-5 { font-size: 10px; right: 5%; }
+    .scatter-6 { font-size: 14px; left: 5%; }
+}
+
