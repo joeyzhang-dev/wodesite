@@ -96,8 +96,9 @@
         
         <div class="scan-line"></div>
     </div>
-    <main>
-        <div class="name-container">
+    
+    <div class="hero-section">
+        <main>
             <h1 class="trail trail-8">joey</h1>
             <h1 class="trail trail-7">joey</h1>
             <h1 class="trail trail-6">joey</h1>
@@ -107,7 +108,25 @@
             <h1 class="trail trail-2">joey</h1>
             <h1 class="trail trail-1">joey</h1>
         </div>
-    </main>
+        </main>
+    </div>
+    
+    <div class="scroll-indicator">
+        <div class="scroll-text">yo scroll down!!!</div>
+        <div class="scroll-caret">v</div>
+    </div>
+    
+    <section class="blog-section">
+        <div class="blog-entry">
+            <div class="blog-date">2025.12.18</div>
+            <p class="blog-content">gym was fucking great today. back + bi, abs, cardio. we back baby. gonna work on progsu and linear algebra td.</p>
+        </div>
+        
+        <div class="blog-entry">
+            <div class="blog-date">2025.12.17</remodiv>
+            <p class="blog-content">built another iron golem farm in my smp. now we printing iron ingots.</p>
+        </div>
+    </section>
     <script>
         const nameContainer = document.querySelector('.name-container');
         const trails = document.querySelectorAll('.trail');
@@ -183,6 +202,17 @@
         
         // Start animation loop
         animateTrails();
+        
+        // Hide scroll indicator when scrolling
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (window.scrollY > 100) {
+                scrollIndicator.style.opacity = '0';
+            } else {
+                scrollIndicator.style.opacity = '0.5';
+            }
+        });
     </script>
 </body>
 </html>
