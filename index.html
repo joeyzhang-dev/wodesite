@@ -130,7 +130,9 @@
     
     <div class="audio-player">
         <button class="play-btn" id="playBtn">▶</button>
-        <span class="audio-label">play music</span>
+        <span class="audio-label">
+            <span style="animation-delay: 0s">c</span><span style="animation-delay: 0.1s">l</span><span style="animation-delay: 0.2s">i</span><span style="animation-delay: 0.3s">c</span><span style="animation-delay: 0.4s">k</span><span style="animation-delay: 0.5s"> </span><span style="animation-delay: 0.6s"> </span><span style="animation-delay: 0.7s"> </span><span style="animation-delay: 0.8s">m</span><span style="animation-delay: 0.9s">e</span><span style="animation-delay: 1s"> </span><span style="animation-delay: 1.1s">🔥</span>
+        </span>
     </div>
     <audio id="audioPlayer" loop autoplay>
         <source src="banger.mp3" type="audio/mpeg">
@@ -236,8 +238,16 @@
         
         function triggerYahooo() {
             if (!hasPlayedBefore) {
-                yahooo.classList.add('slide');
+                yahooo.style.display = 'block';
+                yahooo.style.visibility = 'visible';
+                
                 setTimeout(() => {
+                    yahooo.classList.add('slide');
+                }, 10);
+                
+                setTimeout(() => {
+                    yahooo.style.display = 'none';
+                    yahooo.style.visibility = 'hidden';
                     yahooo.classList.remove('slide');
                 }, 1500);
                 
@@ -253,9 +263,12 @@
             }
         }
         
+        const audioLabel = document.querySelector('.audio-label');
+        
         audioPlayer.play().then(() => {
             isPlaying = true;
             playBtn.textContent = '❚❚';
+            audioLabel.style.visibility = 'hidden';
             triggerYahooo();
         }).catch(() => {
             console.log('Autoplay blocked');
@@ -269,6 +282,7 @@
             } else {
                 audioPlayer.play();
                 playBtn.textContent = '❚❚';
+                audioLabel.style.visibility = 'hidden';
                 triggerYahooo();
             }
             isPlaying = !isPlaying;

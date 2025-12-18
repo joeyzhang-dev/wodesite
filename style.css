@@ -910,12 +910,16 @@ h1 {
         font-size: 14px;
         line-height: 1.6;
     }
+    
+    .yahooo {
+        font-size: 80px;
+    }
 }
 
 .audio-player {
     position: fixed;
     top: 50%;
-    left: 3%;
+    left: 33%;
     transform: translateY(-50%);
     z-index: 100;
     display: flex;
@@ -943,7 +947,7 @@ h1 {
 
 .audio-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 14px;
     opacity: 0.5;
     text-transform: lowercase;
     writing-mode: vertical-rl;
@@ -951,10 +955,24 @@ h1 {
     letter-spacing: 0.05em;
 }
 
+.audio-label span {
+    display: inline-block;
+    animation: waveBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes waveBounce {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(4px);
+    }
+}
+
 .yahooo {
     position: fixed;
     top: 50%;
-    left: -100%;
+    left: -150%;
     transform: translateY(-50%);
     font-size: 200px;
     font-weight: 900;
@@ -965,6 +983,8 @@ h1 {
     pointer-events: none;
     text-transform: lowercase;
     white-space: nowrap;
+    display: none;
+    visibility: hidden;
 }
 
 .yahooo span {
@@ -976,19 +996,19 @@ h1 {
 }
 
 .yahooo.slide {
-    animation: slideAcross 1.25s ease-in-out;
+    animation: slideAcross 1.25s ease-in-out forwards;
 }
 
 @keyframes slideAcross {
     0% {
-        left: -50%;
+        left: -150%;
     }
     50% {
         left: 50%;
         transform: translate(-50%, -50%);
     }
     100% {
-        left: 150%;
+        left: 200%;
     }
 }
 
@@ -1036,6 +1056,7 @@ body.shake .trail-7 {
 body.shake .trail-8 {
     transform: translate(-60px, 65px) rotate(25deg) !important;
 }
+
 
 @keyframes shake {
     0%, 100% {
@@ -1163,5 +1184,6 @@ body.shake .trail-8 {
     .yahooo {
         color: #ffffff;
     }
+    
 }
 
