@@ -1001,6 +1001,75 @@ h1 {
     }
 }
 
+body.shake {
+    animation: shake 0.25s ease-in-out;
+}
+
+body.shake .trail-1 {
+    transform: translate(45px, -50px) rotate(-15deg) !important;
+}
+
+body.shake .trail-2 {
+    transform: translate(-50px, 45px) rotate(20deg) !important;
+}
+
+body.shake .trail-3 {
+    transform: translate(55px, 48px) rotate(-25deg) !important;
+}
+
+body.shake .trail-4 {
+    transform: translate(-48px, -55px) rotate(30deg) !important;
+}
+
+body.shake .trail-5 {
+    transform: translate(60px, -45px) rotate(-18deg) !important;
+}
+
+body.shake .trail-6 {
+    transform: translate(-55px, 60px) rotate(35deg) !important;
+}
+
+body.shake .trail-7 {
+    transform: translate(50px, -55px) rotate(-28deg) !important;
+}
+
+body.shake .trail-8 {
+    transform: translate(-60px, 65px) rotate(25deg) !important;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    10% {
+        transform: translate(-12px, 12px);
+    }
+    20% {
+        transform: translate(12px, -12px);
+    }
+    30% {
+        transform: translate(-12px, -12px);
+    }
+    40% {
+        transform: translate(12px, 12px);
+    }
+    50% {
+        transform: translate(-12px, 12px);
+    }
+    60% {
+        transform: translate(12px, -12px);
+    }
+    70% {
+        transform: translate(-12px, -12px);
+    }
+    80% {
+        transform: translate(12px, 12px);
+    }
+    90% {
+        transform: translate(-12px, -12px);
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #0a0a0a;

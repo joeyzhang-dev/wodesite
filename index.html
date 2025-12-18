@@ -240,6 +240,15 @@
                 setTimeout(() => {
                     yahooo.classList.remove('slide');
                 }, 1500);
+                
+                // Trigger shake at beat drop
+                setTimeout(() => {
+                    document.body.classList.add('shake');
+                    setTimeout(() => {
+                        document.body.classList.remove('shake');
+                    }, 200);
+                }, 1000);
+                
                 hasPlayedBefore = true;
             }
         }
