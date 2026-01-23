@@ -116,16 +116,8 @@
         <div class="scroll-caret">v</div>
     </div>
     
-    <section class="blog-section">
-        <div class="blog-entry">
-            <div class="blog-date">2025.12.18</div>
-            <p class="blog-content">gym was fucking great today. back + bi, abs, cardio. we back baby. gonna work on progsu and linear algebra td.</p>
-        </div>
-        
-        <div class="blog-entry">
-            <div class="blog-date">2025.12.17</remodiv>
-            <p class="blog-content">built another iron golem farm in my smp. now we printing iron ingots.</p>
-        </div>
+    <section class="blog-section" id="blogSection">
+        <!-- Blog entries will be loaded dynamically -->
     </section>
     
     <div class="audio-player">
@@ -148,6 +140,37 @@
     </div>
     
     <script>
+        // Load blog entries
+        async function loadBlogEntries() {
+            try {
+                const response = await fetch('blog/entries.json');
+                const entries = await response.json();
+                const blogSection = document.getElementById('blogSection');
+                
+                entries.forEach(entry => {
+                    const blogEntry = document.createElement('div');
+                    blogEntry.className = 'blog-entry';
+                    
+                    const blogDate = document.createElement('div');
+                    blogDate.className = 'blog-date';
+                    blogDate.textContent = entry.date;
+                    
+                    const blogContent = document.createElement('p');
+                    blogContent.className = 'blog-content';
+                    blogContent.textContent = entry.content;
+                    
+                    blogEntry.appendChild(blogDate);
+                    blogEntry.appendChild(blogContent);
+                    blogSection.appendChild(blogEntry);
+                });
+            } catch (error) {
+                console.error('Error loading blog entries:', error);
+            }
+        }
+        
+        // Load blog entries when page loads
+        loadBlogEntries();
+        
         const nameContainer = document.querySelector('.name-container');
         const trails = document.querySelectorAll('.trail');
         let timeout;
