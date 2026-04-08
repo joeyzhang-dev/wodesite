@@ -162,6 +162,20 @@
                     
                     blogEntry.appendChild(blogDate);
                     blogEntry.appendChild(blogContent);
+
+                    if (entry.images) {
+                        const imgContainer = document.createElement('div');
+                        imgContainer.className = 'blog-images';
+                        entry.images.forEach(src => {
+                            const img = document.createElement('img');
+                            img.src = src;
+                            img.className = 'blog-img';
+                            img.loading = 'lazy';
+                            imgContainer.appendChild(img);
+                        });
+                        blogEntry.appendChild(imgContainer);
+                    }
+
                     blogSection.appendChild(blogEntry);
                 });
             } catch (error) {

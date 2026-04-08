@@ -648,6 +648,19 @@ main {
     margin: 0;
 }
 
+.blog-images {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.blog-img {
+    width: 100%;
+    border-radius: 4px;
+    opacity: 0.9;
+}
+
 .scroll-indicator {
     position: fixed;
     bottom: 40px;
