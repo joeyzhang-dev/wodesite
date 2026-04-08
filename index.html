@@ -189,7 +189,24 @@
         
         // Load blog entries when page loads
         loadBlogEntries();
-        
+
+        // Fade out scatter/hero content as user scrolls toward blog
+        const scatterEl = document.querySelector('.text-scatter');
+        const heroEl = document.querySelector('.hero-section');
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        const blogSection = document.getElementById('blogSection');
+
+        window.addEventListener('scroll', () => {
+            const blogTop = blogSection.getBoundingClientRect().top;
+            const windowH = window.innerHeight;
+            // fade starts when blog is 1.5 screens away, fully gone when blog hits top
+            const progress = Math.min(Math.max(1 - blogTop / (windowH * 1.5), 0), 1);
+            const opacity = 1 - progress;
+            scatterEl.style.opacity = opacity;
+            heroEl.style.opacity = opacity;
+            if (scrollIndicator) scrollIndicator.style.opacity = opacity;
+        });
+
         const nameContainer = document.querySelector('.name-container');
         const trails = document.querySelectorAll('.trail');
         let timeout;
