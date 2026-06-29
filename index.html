@@ -228,8 +228,9 @@
 
         // Load GitHub + Monkeytype activity heatmaps
         const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const WEEKDAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
-        function renderHeatmap(gridEl, monthsEl, days) {
+        function renderHeatmap(gridEl, monthsEl, days, noun) {
             gridEl.innerHTML = '';
             monthsEl.innerHTML = '';
             const ncols = Math.ceil(days.length / 7);
@@ -237,7 +238,11 @@
             days.forEach(d => {
                 const cell = document.createElement('div');
                 cell.className = 'hm-cell lvl-' + d.level;
-                cell.title = d.count + ' on ' + d.date;
+                const m = parseInt(d.date.slice(5, 7), 10) - 1;
+                const day = parseInt(d.date.slice(8, 10), 10);
+                const amount = d.count === 0 ? 'no ' + noun + 's'
+                    : d.count + ' ' + noun + (d.count === 1 ? '' : 's');
+                cell.dataset.tip = amount + ' · ' + WEEKDAY_NAMES[d.weekday] + ' ' + MONTH_NAMES[m] + ' ' + day;
                 gridEl.appendChild(cell);
             });
             let lastMonth = -1;
@@ -250,6 +255,32 @@
                 }
                 monthsEl.appendChild(span);
             }
+        }
+
+        // Instant custom tooltip on cell hover (native title has a long delay).
+        function setupHeatmapTooltips() {
+            const tip = document.createElement('div');
+            tip.className = 'hm-tooltip';
+            document.body.appendChild(tip);
+            ['ghGrid', 'mtGrid'].forEach(id => {
+                const grid = document.getElementById(id);
+                if (!grid) return;
+                grid.addEventListener('mouseover', e => {
+                    const cell = e.target.closest('.hm-cell');
+                    if (!cell || !grid.contains(cell)) return;
+                    tip.textContent = cell.dataset.tip || '';
+                    tip.classList.add('show');
+                    const r = cell.getBoundingClientRect();
+                    const tw = tip.offsetWidth;
+                    let cx = r.left + r.width / 2;
+                    cx = Math.max(tw / 2 + 6, Math.min(cx, window.innerWidth - tw / 2 - 6));
+                    const below = r.top < 44;
+                    tip.classList.toggle('below', below);
+                    tip.style.left = cx + 'px';
+                    tip.style.top = (below ? r.bottom + 8 : r.top - 8) + 'px';
+                });
+                grid.addEventListener('mouseleave', () => tip.classList.remove('show'));
+            });
         }
 
         function activityLabel(source, noun) {
@@ -269,8 +300,8 @@
                 if (!response.ok) throw new Error('HTTP ' + response.status);
                 const data = await response.json();
 
-                renderHeatmap(document.getElementById('ghGrid'), document.getElementById('ghMonths'), data.github.days);
-                renderHeatmap(document.getElementById('mtGrid'), document.getElementById('mtMonths'), data.monkeytype.days);
+                renderHeatmap(document.getElementById('ghGrid'), document.getElementById('ghMonths'), data.github.days, 'contribution');
+                renderHeatmap(document.getElementById('mtGrid'), document.getElementById('mtMonths'), data.monkeytype.days, 'test');
 
                 ghTotal.textContent = activityLabel(data.github, 'contributions');
                 mtTotal.textContent = activityLabel(data.monkeytype, 'tests');
@@ -282,6 +313,7 @@
         }
 
         loadHeatmaps();
+        setupHeatmapTooltips();
 
         // Fade out scatter/hero content as user scrolls toward the content below
         const scatterEl = document.querySelector('.text-scatter');

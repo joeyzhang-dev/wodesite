@@ -1501,6 +1501,33 @@ body.shake .trail-8 {
 .heatmap-legend span:first-child { margin-right: 3px; }
 .heatmap-legend span:last-child { margin-left: 3px; }
 
+.hm-tooltip {
+    position: fixed;
+    z-index: 200;
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+    background: #0a0a0a;
+    color: #ffffff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    padding: 6px 9px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.08s ease;
+}
+
+.hm-tooltip.below {
+    transform: translate(-50%, 0);
+}
+
+.hm-tooltip.show {
+    opacity: 1;
+}
+
 @media (prefers-color-scheme: dark) {
     .heatmap-block {
         --l0: #161b22;
@@ -1519,6 +1546,11 @@ body.shake .trail-8 {
 
     .heatmap-title {
         color: #ffffff;
+    }
+
+    .hm-tooltip {
+        background: #ffffff;
+        color: #0a0a0a;
     }
 }
 
