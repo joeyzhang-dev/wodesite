@@ -8,18 +8,19 @@
 //   GITHUB_LOGIN        - GitHub username (defaults to joeyzhang-dev)
 
 const GITHUB_LOGIN = process.env.GITHUB_LOGIN || 'joeyzhang-dev';
-const WEEKS = 53;
+const WINDOW_DAYS = 30;
 const MS_PER_DAY = 86400000;
 
 function isoDate(d) {
   return d.toISOString().slice(0, 10);
 }
 
-// Canonical date axis: WEEKS columns of 7 days, ending today, starting on a Sunday.
+// Date axis: the last WINDOW_DAYS days, padded back to the most recent Sunday so
+// the 7-row column grid aligns to weekdays. Ends today.
 function buildAxis() {
   const today = new Date();
   const end = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
-  const start = new Date(end.getTime() - (WEEKS * 7 - 1) * MS_PER_DAY);
+  const start = new Date(end.getTime() - (WINDOW_DAYS - 1) * MS_PER_DAY);
   // Roll start back to the most recent Sunday (getUTCDay: 0 = Sunday).
   start.setUTCDate(start.getUTCDate() - start.getUTCDay());
   const days = [];
@@ -40,24 +41,22 @@ function levelFor(count, max) {
   return 4;
 }
 
-const GH_LEVEL = {
-  NONE: 0,
-  FIRST_QUARTILE: 1,
-  SECOND_QUARTILE: 2,
-  THIRD_QUARTILE: 3,
-  FOURTH_QUARTILE: 4,
-};
+// Bucket every day's count into levels relative to the window's own max.
+function assignLevels(days) {
+  let max = 0;
+  for (const d of days) if (d.count > max) max = d.count;
+  for (const d of days) d.level = levelFor(d.count, max);
+}
 
-async function fetchGitHub(axisByDate) {
+async function fetchGitHub(axisByDate, fromISO, toISO) {
   const token = process.env.GITHUB_TOKEN;
   if (!token) return { configured: false, total: 0, error: 'GITHUB_TOKEN not set' };
 
-  const query = `query($login: String!) {
+  const query = `query($login: String!, $from: DateTime!, $to: DateTime!) {
     user(login: $login) {
-      contributionsCollection {
+      contributionsCollection(from: $from, to: $to) {
         contributionCalendar {
-          totalContributions
-          weeks { contributionDays { date contributionCount contributionLevel } }
+          weeks { contributionDays { date contributionCount } }
         }
       }
     }
@@ -70,7 +69,7 @@ async function fetchGitHub(axisByDate) {
       'Content-Type': 'application/json',
       'User-Agent': 'wodesite-heatmaps',
     },
-    body: JSON.stringify({ query, variables: { login: GITHUB_LOGIN } }),
+    body: JSON.stringify({ query, variables: { login: GITHUB_LOGIN, from: fromISO, to: toISO } }),
   });
 
   if (!res.ok) throw new Error(`GitHub API ${res.status}`);
@@ -78,16 +77,17 @@ async function fetchGitHub(axisByDate) {
   if (json.errors) throw new Error(json.errors.map((e) => e.message).join('; '));
 
   const cal = json.data.user.contributionsCollection.contributionCalendar;
+  let total = 0;
   for (const week of cal.weeks) {
     for (const day of week.contributionDays) {
       const cell = axisByDate.get(day.date);
       if (cell) {
         cell.count = day.contributionCount;
-        cell.level = GH_LEVEL[day.contributionLevel] ?? levelFor(day.contributionCount, 1);
+        total += day.contributionCount;
       }
     }
   }
-  return { configured: true, total: cal.totalContributions };
+  return { configured: true, total };
 }
 
 async function fetchMonkeytype(axisByDate, sinceMs) {
@@ -118,14 +118,11 @@ async function fetchMonkeytype(axisByDate, sinceMs) {
     offset += limit;
   }
 
-  let max = 0;
-  for (const v of perDay.values()) if (v > max) max = v;
   let total = 0; // count only tests that land on the rendered date axis
   for (const [date, count] of perDay) {
     const cell = axisByDate.get(date);
     if (cell) {
       cell.count = count;
-      cell.level = levelFor(count, max);
       total += count;
     }
   }
@@ -135,6 +132,8 @@ async function fetchMonkeytype(axisByDate, sinceMs) {
 module.exports = async function handler(req, res) {
   const axis = buildAxis();
   const sinceMs = new Date(axis.start + 'T00:00:00.000Z').getTime();
+  const fromISO = axis.start + 'T00:00:00.000Z';
+  const toISO = axis.end + 'T23:59:59.999Z';
 
   // Separate day arrays so each grid carries its own counts/levels on a shared axis.
   const githubDays = axis.days.map((d) => ({ ...d }));
@@ -143,9 +142,13 @@ module.exports = async function handler(req, res) {
   const monkeytypeByDate = new Map(monkeytypeDays.map((d) => [d.date, d]));
 
   const [github, monkeytype] = await Promise.all([
-    fetchGitHub(githubByDate).catch((e) => ({ configured: true, total: 0, error: e.message })),
+    fetchGitHub(githubByDate, fromISO, toISO).catch((e) => ({ configured: true, total: 0, error: e.message })),
     fetchMonkeytype(monkeytypeByDate, sinceMs).catch((e) => ({ configured: true, total: 0, error: e.message })),
   ]);
+
+  // Bucket levels relative to each grid's own max over the displayed window.
+  assignLevels(githubDays);
+  assignLevels(monkeytypeDays);
 
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');

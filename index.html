@@ -121,42 +121,45 @@
         <div class="scroll-caret">v</div>
     </div>
     
-    <section class="blog-section" id="blogSection">
-        <!-- Blog entries will be loaded dynamically -->
-    </section>
+    <div class="content-wrap">
+        <aside class="heatmap-section" id="heatmapSection">
+            <div class="heatmap-caption">last 30 days</div>
+            <div class="heatmap-block github" id="ghBlock">
+                <div class="heatmap-head">
+                    <span class="heatmap-title">github</span>
+                    <span class="heatmap-total" id="ghTotal"></span>
+                </div>
+                <div class="heatmap-scroll">
+                    <div class="heatmap-months" id="ghMonths"></div>
+                    <div class="heatmap-grid" id="ghGrid"></div>
+                    <div class="heatmap-legend">
+                        <span>less</span>
+                        <i class="hm-cell lvl-0"></i><i class="hm-cell lvl-1"></i><i class="hm-cell lvl-2"></i><i class="hm-cell lvl-3"></i><i class="hm-cell lvl-4"></i>
+                        <span>more</span>
+                    </div>
+                </div>
+            </div>
+            <div class="heatmap-block monkeytype" id="mtBlock">
+                <div class="heatmap-head">
+                    <span class="heatmap-title">monkeytype</span>
+                    <span class="heatmap-total" id="mtTotal"></span>
+                </div>
+                <div class="heatmap-scroll">
+                    <div class="heatmap-months" id="mtMonths"></div>
+                    <div class="heatmap-grid" id="mtGrid"></div>
+                    <div class="heatmap-legend">
+                        <span>less</span>
+                        <i class="hm-cell lvl-0"></i><i class="hm-cell lvl-1"></i><i class="hm-cell lvl-2"></i><i class="hm-cell lvl-3"></i><i class="hm-cell lvl-4"></i>
+                        <span>more</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
 
-    <section class="heatmap-section" id="heatmapSection">
-        <div class="heatmap-block github" id="ghBlock">
-            <div class="heatmap-head">
-                <span class="heatmap-title">github</span>
-                <span class="heatmap-total" id="ghTotal"></span>
-            </div>
-            <div class="heatmap-scroll">
-                <div class="heatmap-months" id="ghMonths"></div>
-                <div class="heatmap-grid" id="ghGrid"></div>
-                <div class="heatmap-legend">
-                    <span>less</span>
-                    <i class="hm-cell lvl-0"></i><i class="hm-cell lvl-1"></i><i class="hm-cell lvl-2"></i><i class="hm-cell lvl-3"></i><i class="hm-cell lvl-4"></i>
-                    <span>more</span>
-                </div>
-            </div>
-        </div>
-        <div class="heatmap-block monkeytype" id="mtBlock">
-            <div class="heatmap-head">
-                <span class="heatmap-title">monkeytype</span>
-                <span class="heatmap-total" id="mtTotal"></span>
-            </div>
-            <div class="heatmap-scroll">
-                <div class="heatmap-months" id="mtMonths"></div>
-                <div class="heatmap-grid" id="mtGrid"></div>
-                <div class="heatmap-legend">
-                    <span>less</span>
-                    <i class="hm-cell lvl-0"></i><i class="hm-cell lvl-1"></i><i class="hm-cell lvl-2"></i><i class="hm-cell lvl-3"></i><i class="hm-cell lvl-4"></i>
-                    <span>more</span>
-                </div>
-            </div>
-        </div>
-    </section>
+        <section class="blog-section" id="blogSection">
+            <!-- Blog entries will be loaded dynamically -->
+        </section>
+    </div>
 
     <div class="audio-player">
         <button class="play-btn" id="playBtn">▶</button>
@@ -280,17 +283,17 @@
 
         loadHeatmaps();
 
-        // Fade out scatter/hero content as user scrolls toward blog
+        // Fade out scatter/hero content as user scrolls toward the content below
         const scatterEl = document.querySelector('.text-scatter');
         const heroEl = document.querySelector('.hero-section');
         const scrollIndicator = document.querySelector('.scroll-indicator');
-        const blogSection = document.getElementById('blogSection');
+        const contentWrap = document.querySelector('.content-wrap');
 
         window.addEventListener('scroll', () => {
-            const blogTop = blogSection.getBoundingClientRect().top;
+            const contentTop = contentWrap.getBoundingClientRect().top;
             const windowH = window.innerHeight;
-            // fade starts when blog is 1.5 screens away, fully gone when blog hits top
-            const progress = Math.min(Math.max(1 - blogTop / (windowH * 1.5), 0), 1);
+            // fade starts when content is 1.5 screens away, fully gone when it hits top
+            const progress = Math.min(Math.max(1 - contentTop / (windowH * 1.5), 0), 1);
             const opacity = 1 - progress;
             scatterEl.style.opacity = opacity;
             heroEl.style.opacity = opacity;
