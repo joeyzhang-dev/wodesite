@@ -249,6 +249,15 @@
             }
         }
 
+        function activityLabel(source, noun) {
+            if (!source.configured) return 'offline';
+            if (source.error) {
+                console.warn(noun + ' heatmap unavailable:', source.error);
+                return 'offline';
+            }
+            return source.total.toLocaleString() + ' ' + noun;
+        }
+
         async function loadHeatmaps() {
             const ghTotal = document.getElementById('ghTotal');
             const mtTotal = document.getElementById('mtTotal');
@@ -260,12 +269,8 @@
                 renderHeatmap(document.getElementById('ghGrid'), document.getElementById('ghMonths'), data.github.days);
                 renderHeatmap(document.getElementById('mtGrid'), document.getElementById('mtMonths'), data.monkeytype.days);
 
-                ghTotal.textContent = data.github.configured
-                    ? data.github.total.toLocaleString() + ' contributions'
-                    : 'offline';
-                mtTotal.textContent = data.monkeytype.configured
-                    ? data.monkeytype.total.toLocaleString() + ' tests'
-                    : 'offline';
+                ghTotal.textContent = activityLabel(data.github, 'contributions');
+                mtTotal.textContent = activityLabel(data.monkeytype, 'tests');
             } catch (error) {
                 console.error('Error loading heatmaps:', error);
                 ghTotal.textContent = 'offline';
